@@ -1,0 +1,64 @@
+[gd_scene load_steps=10 format=3 uid="uid://buslf6dxkf21x"]
+
+[ext_resource type="Texture2D" uid="uid://bkwvwkdy1rkxc" path="res://art/mono-basic-enemy.png" id="1_rwafm"]
+[ext_resource type="PackedScene" uid="uid://dneo767ppkqrf" path="res://scenes/hitbox.tscn" id="2_m2rku"]
+[ext_resource type="Script" uid="uid://bc888y28odjau" path="res://code/basic_enemy.gd" id="2_t1tcq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1tcq"]
+atlas = ExtResource("1_rwafm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05t60"]
+atlas = ExtResource("1_rwafm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2wxn"]
+atlas = ExtResource("1_rwafm")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhlmc"]
+atlas = ExtResource("1_rwafm")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0e1n8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1tcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05t60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2wxn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhlmc")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oxpuf"]
+radius = 11.0
+
+[node name="basic-enemy" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_0e1n8")
+animation = &"walk"
+autoplay = "walk"
+frame = 2
+frame_progress = 0.317541
+script = ExtResource("2_t1tcq")
+
+[node name="hitbox" parent="." instance=ExtResource("2_m2rku")]
+collision_layer = 2
+collision_mask = 2
+script = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(-1.86282e-09, 5)
+rotation = 1.57649
+shape = SubResource("CircleShape2D_oxpuf")
+
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]

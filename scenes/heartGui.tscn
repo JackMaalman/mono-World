@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://citrwskpahkyr"]
+
+[ext_resource type="Script" uid="uid://ba4wowjptnblq" path="res://code/heart_gui.gd" id="1_uci6c"]
+[ext_resource type="Texture2D" uid="uid://brr83lmilqyw5" path="res://art/mono-hearts.png" id="2_qiywh"]
+
+[node name="heartGui" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+offset_right = 15.0
+offset_bottom = 14.0
+script = ExtResource("1_uci6c")
+
+[node name="Mono-hearts" type="Sprite2D" parent="."]
+position = Vector2(7, 7)
+texture = ExtResource("2_qiywh")
+hframes = 2
